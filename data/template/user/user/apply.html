@@ -1,0 +1,148 @@
+{include file="common/user-head" /}
+    <div class="g-content" id="content">
+    <h2 class="mod-title">
+        <span class="title">结算</span>
+    </h2>
+    <div class="section-main js-content-loading show-loading-conten" id="js_section">
+        <div class="mod-form ext-form-info new-form-info">
+            <h3 class="mod-title ext-subtitle-border">
+                <span class="title">基础信息</span>
+            </h3>
+        <div class="g-row">
+            <div class="form-line g-col-11">
+                <label class="form-label float-l">商户ID：</label>
+                <div class="form-element float-l">
+                    <div class="form-info form-info-0" title="{$userInfo.uid}">{$userInfo.uid}</div>
+                </div>
+            </div>
+            <div class="form-line g-col-11">
+                <label class="form-label float-l">商户名称：</label>
+                <div class="form-element float-l">
+                    <div class="form-info form-info-2" title="{$userInfo.merchant}">{$userInfo.merchant}</div>
+                </div>
+            </div>
+        </div>
+        <div class="g-row">
+            <div class="form-line g-col-11">
+                <label class="form-label float-l">结算方式：</label>
+                <div class="form-element float-l">
+                    <div class="form-info">{$userInfo.payment}</div>
+                </div>
+            </div>
+            <div class="form-line g-col-11">
+                <label class="form-label float-l">结算账号：</label>
+                <div class="form-element float-l">
+                    <div class="form-info">{$userInfo.account}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <h3 class="mod-title ext-subtitle-border">
+            <span class="title">申请结算</span>
+        </h3>
+        <div class="mod-form ext-form-large new-form-refund">
+            <form method="post" >
+                <!--这行别删，修复ie7bug:去掉的话第一行会换行-->
+                <div class="refund-other" id="js_section_other">
+                    <div class="form-line g-row">
+                        <label class="form-label g-col-9">提现金额：</label>
+                        <div class="form-element form-element-height g-col-15">
+                            <div class="form-element-inner">
+                                <div class="show-text-tips">
+                                    <input id="amount" name="amount" placeholder="可结算金额{$wallet.total}元" class="form-text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-line g-row">
+                        <label class="form-label g-col-9">验证码：</label>
+                        <div class="form-element g-col-15">
+                            <span class="form-text-tips" id="code-tip">请输入验证码</span>
+                            <input name="code" class="form-text" id="code">
+                            <a href="javascript:getCode();" class="drop_link">获取验证码</a>
+                        </div>
+                    </div>
+                    <div class="form-line-btn g-row">
+                        <div class="form-element g-col-15 g-col-offset-9">
+                            <button class="mod-btn ext-btn-blue" type="button" onclick="settle()" >确定提现</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <script type="text/javascript">
+                $(function(){
+                    document.onkeydown = function(e)
+                    {
+                        var ev = document.all ? window.event : e;
+                        if(ev.keyCode==13)
+                        {
+                            settle();
+                        }
+                    }
+                });
+
+                //验证码
+                function getCode() {
+                    $.ajax({
+                        type : 'GET',
+                        dataType : 'json',
+                        url : '/api/sendmail?action=getcode',
+                        success : function(result) {
+                            if (result.code == '1') {
+                                layer.msg('发送成功',{icon:1});
+                            } else {
+                                layer.msg(result.msg,{icon:2})
+                            }
+                        }
+                    })
+                }
+
+                //结算
+                function settle() {
+                    var amount = $("#amount").val();
+                    if (amount == null || amount == ""|| amount == 0) {
+                        layer.msg('请输入结算金额',{icon:2})
+                        return;
+                    }
+                    var code = $("#code").val();
+                    if (code == null || code == "") {
+                        layer.msg('请输入验证码',{icon:2})
+                        return;
+                    }
+                    var postData = {
+                        "amount" : amount,
+                        "code" : code
+                    };
+                    $.ajax({
+                        type : 'POST',
+                        dataType : 'json',
+                        url : '/user/fund/apply?action=settle',
+                        data : postData,
+                        success : function(result) {
+                            if (result.code == '1') {
+                                layer.msg('申请结算成功',{icon:1});
+                                setTimeout(function () {
+                                    //跳转结算记录
+                                    window.location.href = "/user/fund/settlement?action=record";
+                                }, 1000);
+                            } else {
+                                layer.msg(result.msg,{icon:2})
+                            }
+                        }
+                    })
+                }
+
+            </script>
+        </div>
+    </div>
+        <div class="note" id="note">
+            <span>注：</span>
+            <ol>
+                <li>1、结算金额=支付净额-手续费金额，划账金额指同一交易起止日期下的划账金额总和。</li>
+                <li>2、结算金额从结算日起24小时内到账。</li>
+                <li>例：结算100元整，平台收取+-1.20%；第三方平台收取0.60%。   =》 100-100*0.012=98.8</li>
+            </ol>
+        </div>
+</div>
+</div>
+{include file="common/index-foot" /}

@@ -1,0 +1,20 @@
+{include file="common/user-head" /}
+    <div class="g-content">
+        <h2 class="mod-title"><span class="title">API安全</span></h2>
+        <div class="js-content-loading" id="api_cert_manage">
+            <div class="nocert-wrap" id="no_cert">
+                <h3 class="mod-title ext-subtitle-noborder">
+                <span class="title">API密钥</span>
+            </h3>
+                <div class="no-cert">
+                    <p class="line">在API调用时用来按照指定规则对您的请求参数进行签名，服务器收到您的请求时会进行签名验证，既可以界定您的身份，也可以防止其他人恶意篡改请求数据。部分API单独使用API密钥签名进行安全加固，部分安全性要求更高的API会要求使用API密钥签名和API证书同时进行安全加固。API密钥属于敏感信息，请妥善保管不要泄露。如果怀疑信息泄露，请重设密钥。</p>
+
+                    <div class="btn-line btn-line-mar">
+                        <input style="width: 500px;" class="mod-btn ext-btn-blue" disabled="disabled" value="AccessKey:{$userInfo.accesskey}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="common/index-foot" /}

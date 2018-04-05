@@ -1,0 +1,61 @@
+{include file="common/user-head" /}
+    <div class="g-content" id="content">
+    <h2 class="mod-title">
+        <span class="title">结算记录</span>
+    </h2>
+    <div class="section-main js-content-loading">
+        <div class="mod-table ext-table-gray js-page-loading show-table-nodata" id="table_content">
+            <table>
+                <caption>退款订单查询</caption>
+                <thead>
+                <tr>
+                    <th class="col3" scope="col">状态</th>
+                    <th class="col12" scope="col">结算申请单号</th>
+                    <th class="col3" scope="col">结算方式</th>
+                    <th class="col3" scope="col">结算金额(元)</th>
+                    <th class="col4" scope="col">手续费金额(元)</th>
+                    <th class="col4" scope="col">划账金额(元)</th>
+                    <th class="col4" scope="col">接算日期</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                {foreach $settleData as $vo }
+                <tr>
+                    <td>
+                        {if $vo.status == 1}
+                        <b>下单完成</b> {elseif $vo.status == 2}<b>支付完成</b> {else /} <b>支付失败</b>
+                        {/if}
+                    </td>
+                    <td>{$vo.onum}</td>
+                    <td> {if $vo.payment = 'wxpay'}<b>微信支付</b>{else /}<b>支付宝</b> {/if}</td>
+                    <td>￥ <b>{$vo.amount}</b></td>
+                    <td>￥ <b>{$vo.amount * 0.012}</b></td>
+                    <td>￥ <b>{$vo.amount - $vo.amount * 0.012}</b></td>
+                    <td>{$vo.create_time}<br>{$vo.update_time}</td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+            {empty name="$settleData"}
+            <div class="table-nodata">
+                <div class="table-nodata-wrap">
+                    <span class="ico-info"></span><span id="table_tips">暂无数据</span>
+                </div>
+            </div>
+            {/empty}
+        </div>
+        <!-- 翻页[[ -->
+            {$settleData->render()}
+        <!-- 翻页]] -->
+        <div class="note" id="note">
+            <span>注：</span>
+            <ol>
+                <li>1、结算金额=支付净额-手续费金额，划账金额指同一交易起止日期下的划账金额总和。</li>
+                <li>2、结算金额从结算日起24小时内到账。</li>
+                <li>例：结算100元整，平台收取+-1.20%；第三方平台收取0.60%。   =》 100-100*0.012=98.8</li>
+            </ol>
+        </div>
+    </div>
+</div>
+</div>
+{include file="common/index-foot" /}

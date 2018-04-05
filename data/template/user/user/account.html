@@ -1,0 +1,157 @@
+{include file="common/user-head" /}
+    <div class="g-content">
+        <h2 class="mod-title">
+            <span class="title">账户信息</span></h2>
+            <div class="js-content-loading" id="content">
+                <h3 class="mod-title ext-subtitle-border">
+                <span class="title">基础信息</span>
+                </h3>
+                <div class="info" id="user_info">
+                    <div class="g-row">
+                        <div class="form-line g-col-12">
+                            <div class="g-row">
+                                <label class="form-label g-col-3">商户号 :</label>
+                                <div class="form-element g-col-9">
+                                    <div class="form-element-inner">
+                                        <div class="form-info">{$userData.uid}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-line g-col-12">
+                            <div class="g-row">
+                                <label class="form-label g-col-3">联系QQ :</label>
+                                <div class="form-element g-col-9">
+                                    <div class="form-element-inner">
+                                        <div class="form-info">{$userData.qq}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="g-row">
+                        <div class="form-line g-col-12">
+                            <div class="g-row">
+                                <label class="form-label g-col-3">联系人 :</label>
+                                <div class="form-element g-col-9">
+                                    <div class="form-element-inner">
+                                        <div class="form-info">{$userData.contact}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-line g-col-12">
+                            <div class="g-row">
+                                <label class="form-label g-col-3">联系电话 :</label>
+                                <div class="form-element g-col-9">
+                                    <div class="form-element-inner">
+                                        <div class="form-info">{$userData.mobile}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="mod-title ext-subtitle-border">
+                    <span class="title">结算信息</span>
+                </h3>
+                <div class="info g-clearfix" id="sett_info">
+                    <form id="payment" class="mod-form" method="post">
+                        <div id="sett_tips_content">
+                                <div class="g-row">
+                                    <div class="form-line g-col-12">
+                                        <div class="g-row">
+                                            <label class="form-label g-col-5">账户类型 :</label>
+                                            <div class="form-element g-col-7">
+                                                <div class="form-element-inner">
+                                                    <div class="edit-element">
+                                                        <div class="show-text-tips">
+                                                            <input class="form-text short" type="text" name="payment" id="method" value="{if $userData.payment = 'wxpay'}微信支付{else /}支付宝{/if}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="g-row">
+                                    <div class="form-line g-col-12">
+                                        <div class="g-row">
+                                            <label class="form-label g-col-5">账户名称 :</label>
+                                            <div class="form-element g-col-7">
+                                                <div class="form-element-inner">
+                                                    <div class="edit-element">
+                                                        <div class="show-text-tips">
+                                                            <input class="form-text short" type="text" name="contact" id="accountname" value="{$userData.contact}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="g-row">
+                                    <div class="form-line g-col-12">
+                                        <div class="g-row">
+                                            <label class="form-label g-col-5">结算账户 :</label>
+                                            <div class="form-element g-col-7">
+                                                <div class="form-element-inner">
+                                                    <div class="edit-element">
+                                                        <div class="show-text-tips">
+                                                            <input class="form-text short" type="text" name="account" id="account" value="{$userData.account}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="form-line-btn g-row">
+                                <button class="mod-btn ext-btn-blue js-submit" onclick="save()" type="button">修改信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <script type="text/javascript">
+                    $(function(){
+                        document.onkeydown = function(e)
+                        {
+                            var ev = document.all ? window.event : e;
+                            if(ev.keyCode==13)
+                            {
+                                save();
+                            }
+                        }
+                    });
+                    function save() {
+                        var postData = $("#payment").serializeArray();
+                        $.ajax({
+                            type : 'POST',
+                            dataType : 'json',
+                            url : '/user/account?action=modify',
+                            data : postData,
+                            success : function(result) {
+                                if (result.code == '1') {
+                                    layer.msg('修改成功',{icon:1});
+                                    setTimeout(function () {
+                                        window.location.reload();
+                                    },1000)
+                                } else {
+                                    //爆出错误
+                                    layer.msg(result.msg,{icon:2});
+                                }
+                            }
+                        })
+                    }
+
+                </script>
+                <div class="note">
+                    <strong>注：</strong>
+                    <ol>
+                        <li>商户其他信息变更，请联系客服QQ：702154416。</li>
+                    </ol>
+                </div>
+            </div>
+    </div>
+</div>
+{include file="common/index-foot" /}

@@ -1,0 +1,58 @@
+
+<script type="text/javascript">
+    $(function(){
+        document.onkeydown = function(e)
+        {
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13)
+            {
+                login();
+            }
+        }
+    });
+
+    //登陆
+    function login() {
+        var account = $.trim($("#account").val());
+        if (account == null || account == "") {
+            $("#err_id").html("请输入账户");
+            return;
+        }
+        var password = $("#password").val();
+        if (password == null || password == "") {
+            $("#err_id").html("请输入密码");
+            return;
+        }
+        var postData = {
+            "suffix" : "e_login",
+            "name" : account,
+            "pass" : password
+        };
+
+        $("#js_submit").attr("disabled", "disabled");
+        $("#js_submit").html("登录中...");
+        $("#err_id").hide();
+        $.ajax({
+            type : 'POST',
+            dataType : 'json',
+            url : '/user/dologin?action=login',
+            data : postData,
+            success : function(result) {
+
+                if (result.code == '1') {
+                    $("#js_submit").html("登录成功");
+                    setTimeout(function () {
+                        window.location.href = "/user";
+                    },1000)
+                } else {
+                    $("#js_submit").removeAttr("disabled");
+                    $("#js_submit").html("登录");
+                    //爆出错误
+                    $("#err_id").show();
+                    $("#err_id").html(result.msg);
+                }
+            }
+        })
+    }
+
+</script>

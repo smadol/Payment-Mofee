@@ -1,0 +1,224 @@
+{include file="common/index-head" /}
+
+<div class="container clearfix">
+    <div class="sidebar">
+        <ul class="sidebar-ul"><!-- 选中给.sidebar-li加class "sidebar-on" -->
+
+            <li class="sidebar-li  sidebar-on">
+                <a class="sidebar-droped" >接口介绍 <span class="sidebar-arr"><span class="sidebar-arr-b"></span></span></a>
+                <div class="sidebar-drop"><!-- 选中给.sidebar-drop-a加class "on" -->
+                    <a class="sidebar-drop-a" href="#Explain">文档说明</a>
+                </div>
+            </li>
+
+            <li class="sidebar-li ">
+                <a class="sidebar-droped" >接口规则 <span class="sidebar-arr"><span class="sidebar-arr-b"></span></span></a>
+                <div class="sidebar-drop"><!-- 选中给.sidebar-drop-a加class "on" -->
+                    <a class="sidebar-drop-a" href="#Rule">&nbsp;&nbsp;&nbsp;协议规则</a>
+                </div>
+            </li>
+
+            <li class="sidebar-li ">
+                <a class="sidebar-droped">API列表 <span class="sidebar-arr"><span class="sidebar-arr-b"></span></span></a>
+                <div class="sidebar-drop"><!-- 选中给.sidebar-drop-a加class "on" -->
+                    <a class="sidebar-drop-a" href="#Pay">&nbsp;&nbsp;&nbsp;发起支付</a>
+                    <a class="sidebar-drop-a" href="#Notify">&nbsp;&nbsp;&nbsp;支付通知</a>
+                </div>
+            </li>
+
+            <li class="sidebar-li ">
+                <a class="sidebar-droped">DEMO下载 <span class="sidebar-arr"><span class="sidebar-arr-b"></span></span></a>
+                <div class="sidebar-drop"><!-- 选中给.sidebar-drop-a加class "on" -->
+                    <a class="sidebar-drop-a" href="#Demo">&nbsp;&nbsp;&nbsp;DEMO下载</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $('.sidebar-li>a').on('click',function(){
+                if ($(this).next().css('display') == "none") {
+                    $('.sidebar-li').children('ul').slideUp(300);
+                    $(this).next('ul').slideDown(300);
+                    $(this).parent('li').addClass('sidebar-on on').siblings('li').removeClass('sidebar-on');
+                }else{
+                    $(this).next('ul').slideUp(300);
+                    $('.sidebar-li.sidebar-on .on').removeClass('sidebar-on');
+                }
+            });
+        });
+        function show(mod) {
+           console.log(mod);
+        }
+    </script>
+    <div class="content">
+        <div id="Explain">
+            <h2  class="title-line clearfix"><span class="title">文档说明</span></h2>
+            <p class="MsoNormal">
+                <span style="font-family:'Microsoft YaHei';font-size:14px;color:#666666;line-height:2;">使用此接口可以实现支付宝、QQ钱包、微信支付与银联的即时到账，免签约，无需企业认证。</span>
+            </p>
+            <p class="MsoNormal">
+                <span style="font-family:'Microsoft YaHei';font-size:14px;color:#666666;line-height:2;">本文阅读对象：</span>
+            </p>
+            <p class="MsoNormal">
+                <span style="font-family:'Microsoft YaHei';font-size:14px;color:#666666;line-height:2;">商户系统集成支付宝、QQ钱包、微信支付涉及的技术架构师，研发工程师，测试工程师，系统运维工程师。</span>
+            </p>
+        </div>
+        <div id="Rule">
+            <h2 class="title-line clearfix"><span class="title">协议规则</span></h2>
+            <table class="MsoNormalTable ke-zeroborder" border="0" cellspacing="0" cellpadding="0" width="614" style="border-collapse:collapse;font-family:\\\\\\\\\\\\'sans serif\\\\\\\\\\\\', tahoma, verdana, helvetica;width:460.7pt;">
+                <tbody>
+                <tr>
+                    <td width="223" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">API地址</span></span>
+                        </p>
+                    </td>
+                    <td width="392" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:10pt;font-family:微软雅黑, sans-serif;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';"></span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">https://api.pay.98imo.com/gateway.do</span></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="223" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">传输方式</span></span>
+                        </p>
+                    </td>
+                    <td width="392" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:10pt;font-family:微软雅黑, sans-serif;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">为保证交易安全性，采用</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">HTTPS</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">传输</span></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="223" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">提交方式</span></span>
+                        </p>
+                    </td>
+                    <td width="392" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:10pt;font-family:微软雅黑, sans-serif;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">采用</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">POST</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">方法提交</span></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="223" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">数据格式</span></span>
+                        </p>
+                    </td>
+                    <td width="392" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:10pt;font-family:微软雅黑, sans-serif;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">全部采用</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">JSON</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">（除异步回调），根节点为</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">xml</span></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="223" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">字符编码</span></span>
+                        </p>
+                    </td>
+                    <td width="392" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:10pt;font-family:微软雅黑, sans-serif;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">统一采用</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">UTF-8</span><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">字符编码</span></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="223" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">签名算法</span></span>
+                        </p>
+                    </td>
+                    <td width="392" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-family:'Microsoft YaHei';color:#666666;font-size:14px;">MD5</span><span style="font-size:10pt;font-family:微软雅黑, sans-serif;"></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="223" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">签名要求</span></span>
+                        </p>
+                    </td>
+                    <td width="392" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">请求和接收数据均需要校验签名</span></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="223" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">判断逻辑</span></span>
+                        </p>
+                    </td>
+                    <td width="392" style="border:1pt solid #AEAAAA;">
+                        <p class="MsoNormal" align="left">
+                            <span style="font-size:14px;font-family:'Microsoft YaHei';color:#666666;"><span style="color:#666666;font-size:14px;font-family:'Microsoft YaHei';">先判断协议字段返回，再判断业务返回，最后判断交易状态</span></span>
+                        </p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div id="Pay">
+            <h2 class="title-line clearfix"><span class="title">发起支付</span></h2>
+            <p class="MsoNormal" align="left" style="text-align:left;">
+            <p>APIURL地址：https://api.pay.98imo.com/gateway.do</p>
+            </p>
+            <table class="table table-bordered table-hover">
+                <thead><tr><th>字段名</th><th>变量名</th><th>必填</th><th>类型</th><th>示例值</th><th>描述</th></tr></thead>
+                <tbody>
+                <tr><td>商户ID</td><td>mch_id</td><td>是</td><td>Int</td><td>100000</td><td></td></tr>
+                <tr><td>APPID</td><td>appid</td><td>是</td><td>string</td><td>mo1502031512</td><td></td></tr>
+                <tr><td>支付方式</td><td>trade_type</td><td>是</td><td>String</td><td>ALIPAY</td><td>ALIPAY:支付宝,QQPAY:QQ钱包,WXPAY:微信支付</td></tr>
+                <tr><td>商品名称</td><td>body</td><td>是</td><td>String</td><td>购买VIP会员</td><td></td></tr>
+                <tr><td>商品金额</td><td>total_fee</td><td>是</td><td>String</td><td>1.00</td><td></td></tr>
+                <tr><td>商户订单号</td><td>out_trade_no</td><td>是</td><td>String</td><td>20160806151343349</td><td></td></tr>
+                <tr><td>异步通知地址</td><td>notify_url</td><td>是</td><td>String</td><td>http://www.98imo.com/notify_url.php</td><td>服务器异步通知地址</td></tr>
+                <tr><td>跳转通知地址</td><td>return_url</td><td>是</td><td>String</td><td>http://www.98imo.com/return_url.php</td><td>页面跳转通知地址</td></tr>
+                <tr><td>客户端IP</td><td>bill_create_ip</td><td>否</td><td>String</td><td>127.0.0.1</td><td>客户端IP</td></tr>
+                <tr><td>随机字符串</td><td>nonce_str</td><td>是</td><td>String</td><td>b07152d234b70</td><td></td></tr>
+                <tr><td>签名字符串</td><td>sign</td><td>是</td><td>String</td><td>202cb962ac59075b964b07152d234b70</td><td>签名算法默认为MD5加密</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="Notify">
+            <h2 class="title-line clearfix"><span class="title">支付结果通知</span></h2>
+            <!--"out_trade_no":"T201803112246126108","return_code":"SUCCESS","return_msg":"OK","total_fee":"0.01","sign":"72191927C705A26AAA5FEC958E8C4117"-->
+            <table class="table table-bordered table-hover">
+                <thead><tr><th>字段名</th><th>变量名</th><th>必填</th><th>类型</th><th>示例值</th><th>描述</th></tr></thead>
+                <tbody>
+                <tr><td>消息码</td><td>return_msg</td><td>是</td><td>String</td><td>OK</td><td></td></tr>
+                <tr><td>返回码</td><td>return_code</td><td>是</td><td>String</td><td>SUCCESS</td><td></td></tr>
+                <tr><td>商户订单号</td><td>out_trade_no</td><td>是</td><td>String</td><td>20160806151343349</td><td>商户系统内部的订单号</td></tr>
+                <tr><td>商品金额</td><td>total_fee</td><td>是</td><td>String</td><td>1.00</td><td></td></tr>
+                <tr><td>签名字符串</td><td>sign</td><td>是</td><td>String</td><td>72191927C705A26AAA5FEC958E8C4117</td><td>验签</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="Demo">
+            <h2 class="title-line clearfix"><span class="title">DEMO下载</span></h2>
+            <p class="MsoNormal" align="left" style="text-align:left;">
+               <a href="dowload.html"> <span style="color:#666666;font-size:24px;font-family:&quot;">点击下载</span></a>
+            </p>
+        </div>
+        <br>
+        <br>
+        <br>
+        <!--<div id="doc_ctx">
+
+        </div>-->
+    </div>
+
+</div>
+</div>
+{include file="common/index-foot" /}

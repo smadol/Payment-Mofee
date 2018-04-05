@@ -1,0 +1,148 @@
+{include file="common/head" /}
+
+<!--Page-->
+<div class="page">
+
+    <div class="page-header">
+        <h1 class="page-title">我的资料</h1>
+        {$Data}
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="clientarea.php">首页</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">帐户管理</a></li>
+                <li class="breadcrumb-item active">我的资料</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="page-content ">
+        <div class="col-xxl-3 col-lg-3 col-xs-12">
+            <!-- Page Widget -->
+            <div class="card card-shadow text-xs-center">
+                <div class="card-block">
+                    <a class="avatar avatar-lg" href="javascript:void(0)">
+                        <img src="//q4.qlogo.cn/headimg_dl?dst_uin={$userInfo.mch_qq}&spec=100" alt="...">                    </a>
+                    <p class="profile-img"></p>
+                    <h4 class="profile-user">{$Data.Fullname}</h4>
+                    <p>您好，请尽量详尽、准确地填写资料，确保我们可以顺利联系到您。请尽快绑定您的手机和邮箱，以便及时接收重要提醒与通知。</p>
+                    <a href="/user/security"><button type="button" class="btn btn-success">安全中心</button></a>
+                </div>
+            </div>
+            <!--<a href="/user/security"><div class="alert alert-danger alert-block text-center" style="font-size: 19px;padding-left:25px;padding-top: 30px;padding-bottom:25px;border:1px #ffe0e0 solid; line-height:30px;   box-shadow: 0 1px 1px rgba(251,164,164,.05);">如未在安全中心绑定邮箱，您的资料无法修改保存-->
+            <!--</div></a>-->
+            <!-- End Page Widget -->
+        </div>
+        <div class="col-xxl-9 col-lg-9 col-xs-12">
+            <div class="panel">
+                <div class="panel-body container-fluid advance-select">
+                    <div class="clearfix hidden-md-down"></div>
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-xxl-12 ">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form id="postD" class="form-horizontal" method="post" role="form">
+                                    <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label">姓名: </label>
+                                        <div class="col-md-9 col-xs-12 p-l-0">
+                                            <input type="text" class="form-control" id="inputFirstName" name="fullname" value="{$Data.Fullname}" disabled="disabled" autocomplete="on">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label">Appid: </label>
+                                        <div class="col-md-9 col-xs-12 p-l-0">
+                                            <input type="text" class="form-control" name="appid" id="inputAppid" value="{$userInfo.mch_app}" disabled="disabled"  autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label">AK: </label>
+                                        <div class="col-md-9 col-xs-12 p-l-0">
+                                            <input type="text" class="form-control" name="ak" id="inputAK" value="{$userInfo.mch_ak}" disabled="disabled"  autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label">商户名称: </label>
+                                        <div class="col-md-9 col-xs-12 p-l-0">
+                                            <input type="text" class="form-control" name="mchname" id="inputCompanyName" value="{$userInfo.mch_name}" placeholder="" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label">付款方式: </label>
+                                        <div class="col-md-9 col-xs-12 form-group-region-first  p-l-0">
+                                            <select name="payment" id="inputPaymentMethod" class="form-control">
+                                                <option value="alipay" selected >支付宝</option>
+                                                <option value="weixinpay" >微信支付</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label">收款账户: </label>
+                                        <div class="col-md-9 col-xs-12 p-l-0">
+                                            <input type="text" class="form-control" name="account" id="inputAC" value="{$Data.account}" placeholder="收款账户"  autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label">联系QQ: </label>
+                                        <div class="col-md-9 col-xs-12 p-l-0">
+                                            <input type="text" class="form-control" name="qq" id="inputQQ" value="{$Data.mch_qq}" placeholder="联系QQ"  autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-xs-12 col-md-9 offset-md-2 sumbit-offset  p-l-0">
+                                            <button class="btn btn-success" type="button" onclick="saveInfo()"> 保存修改</button>
+                                            <div id="errMsg" class="alert alert-danger alert-dismissible m-t-20">
+                                                <span class="fa fa-exclamation-circle" style="color: red"></span>
+                                                <span class="alert-link" id="errMsg_text"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Panel Inline Form -->
+
+
+</div>
+<!--End Page-->
+<script type="text/javascript">
+    $(function(){
+        $("#errMsg").hide();
+        document.onkeydown = function(e)
+        {
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13)
+            {
+                saveInfo();
+            }
+        }
+    });
+
+    //结算
+    function saveInfo() {
+
+        var postData = $("#postD").serializeArray();
+        $.ajax({
+            type : 'POST',
+            dataType : 'json',
+            url : '/user/info',
+            data : postData,
+            success : function(result) {
+                if (result.code == '1') {
+                    layer.msg('修改成功',{icon:1});
+                    window.location.reload();
+                } else {
+                    //爆出错误
+                    $("#errMsg").show();
+                    $("#errMsg_text").html(result.msg);
+                }
+            }
+        })
+    }
+
+</script>
+{include file="common/foot" /}

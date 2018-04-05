@@ -1,0 +1,80 @@
+{include file="common/head" /}
+<link rel="stylesheet" href="/static/ziliao/css/bootstrap-markdown.css">
+<link rel="stylesheet" href="/static/ziliao/css/bootstrap-select.css">
+<link rel="stylesheet" href="/static/ziliao/css/dropify.css">
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">提交工单</h1>
+
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">技术支持</a></li>
+                <li class="active breadcrumb-item">提交工单</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+
+        <div class="col-xl-12 col-xs-12 editor">
+            <!-- Panel Examples -->
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="container-fluid container-fluid-sumbit">
+                        <form id="submitticketx" name="submitticket" method="post" action="/support/submitticket?action=submit" enctype="multipart/form-data" role="form">
+                            <input type="hidden" name="token" value="<?php echo md5($userInfo['mch_id']); ?>" />
+                            <div class="form-group">
+                                <label class="form-control-label m-b-5" for="topicTitle">主题：</label>
+                                <input type="text" class="form-control" id="topicTitle" value="" name="subject" placeholder="输入工单主题..."
+                                />
+                            </div>
+                            <div class="form-group">
+                                <textarea name="content" id="inputMessage" data-provide="markdown" data-iconlibrary="fa" rows="10" data-auto-save-name="client_ticket_open"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label class="form-control-label m-b-5 editorlabel" for="topicCategory">部门:</label>
+                                        <select name="typeid" id="inputDepartment" data-plugin="selectpicker" onchange="refreshCustomFields(this)">
+                                            <option value="1" selected="selected">
+                                                技术支持
+                                            </option>
+                                            <option value="2">
+                                                投诉建议
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label class="form-control-label m-b-5" for="topic_tags">优先级别:</label>
+                                        <select name="urgency" id="inputPriority" data-plugin="selectpicker">
+                                            <option value="High">
+                                                高
+                                            </option>
+                                            <option value="Medium" selected="selected">
+                                                中
+                                            </option>
+                                            <option value="Low">
+                                                低
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-xs-left p-l-0">
+                                <button class="btn btn-primary"  type="submit" id="openTicketSubmit">提交</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- End Panel Examples -->
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- End Page -->
+{include file="common/foot" /}

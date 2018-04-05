@@ -1,0 +1,51 @@
+{include file="common/user-head" /}
+        <div class="g-content">
+            <h2 class="mod-title">
+                <span class="title">总览</span>
+            </h2>
+            <div class="js-content-loading" id="content">
+                <div class="info clearfix">
+                <h3 class="mod-title ext-subtitle-noborder">
+                    <span class="title">基本信息</span>
+                </h3>
+                <ul>
+                    <li class="info-li" title="">商户号：{$userInfo.uid}</li>
+                    <li class="info-li" title="">商户名称：{$userInfo.merchant}</li>
+                    <li class="info-li" title="">联系人QQ：{$userInfo.qq}</li>
+                    <li class="info-li" title="">手机号码：{$userInfo.mobile}</li>
+                    <li class="info-li" title="">结算方式：
+                        {if $userInfo.payment = 'wxpay'}微信支付{else /}支付宝 {/if}
+                    </li>
+                    <li class="info-li" title="">结算账户：{$userInfo.account}</li>
+                </ul>
+            </div>
+            </div>
+            <div id="all_unsettle" class="js-content-loading">
+                <h3 class="mod-title ext-subtitle-noborder"><span class="title">总交易合计</span></h3>
+                <div class="info info-top clearfix">
+                    <div class="info-wrap">
+                        <div class="info-list info-list-long"><p>总交易笔数</p><p class="info-num">{$orderCount}</p></div>
+                        <div class="info-list info-list-long"><p>总交易金额(元)</p><p class="info-num font-orange">{$userWallet.total}</p></div>
+                    </div>
+                </div>
+
+                <h3 class="mod-title ext-subtitle-noborder"><span class="title">今日交易统计</span></h3>
+                <div class="info clearfix">
+                    <div class="info-wrap">
+                        <div class="info-list"><p>今日交易笔数</p><p class="info-num">{$now_day_count}</p></div>
+                        <div class="info-list"><p>今日交易金额(元)</p><p class="info-num">{$now_day_amount}</p></div>
+                        <div class="info-list"><p>今日成功交易笔数</p><p class="info-num">{$now_day_success_count}</p></div>
+                        <div class="info-list"><p>今日成功交易金额(元)</p><p class="info-num">{$now_day_success_amount}</p></div>
+                    </div>
+                </div>
+                <h3 class="mod-title ext-subtitle-noborder"><span class="title">昨日交易统计</span></h3>
+                <div class="info clearfix">
+                    <div class="info-wrap">
+                        <div class="info-list info-list-long"><p>交易总笔数</p><p class="info-num">{$last_day_count}</p></div>
+                        <div class="info-list info-list-long"><p>交易总金额(元)</p><p class="info-num">{$last_day_amount}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{include file="common/index-foot" /}

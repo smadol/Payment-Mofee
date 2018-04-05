@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html class="mdl-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=yes"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>Mofee聚合支付 - 专业的支付服务提供商</title>
+    <meta name="title" content="聚合支付" />
+    <meta name="subject" content="移动支付、在线支付、网银支付、线下聚合、智能pos、跨境支付、线上聚合、代收代付、B2B业务、外卡业务" />
+    <meta name="description" content="现在支付提供多种创新支付方式，为个人和企业提供多种主流支付方式，实现轻松快捷收款对账" />
+    <meta name="keywords" content="聚合支付，微信、支付宝、银联、一键支付、应用内支付、移动支付、pos支付 " />
+    <link rel="icon" href="/favicon.ico" mce_href="image/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" mce_href="image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="__CSS__/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__CSS__/style.css">
+    <link rel="stylesheet" type="text/css" href="__CSS__/font.css">
+    <link rel="stylesheet" type="text/css" href="__CSS__/plugins.css">
+    <link rel="stylesheet" type="text/css" href="__CSS__/media.css">
+    <link rel="stylesheet" type="text/css" href="__CSS__/swiper-3.4.2.min.css">
+    <script type="text/javascript" media="" src="__JS__/jquery.min.js"></script>
+    <script type="text/javascript" media="" src="__JS__/swiper-3.4.2.min.js"></script>
+    <script type="text/javascript" media="" src="__JS__/bootstrap.min.js"></script>
+    <script type="text/javascript" media="" src="__JS__/index.js"></script>
+    <script type="text/javascript" media="" src="__JS__/plugins.js"></script>
+    <!-- <script type="text/javascript"  src='js/particles.js'></script> -->
+    <!-- <script type="text/javascript" media="" src="js/line.js"></script> -->
+
+    <link rel="stylesheet" href="__CSS__/material.min.css">
+    <script src="__JS__/material.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="__CSS__/reset.css">
+
+</head>
+<body>
+<div id="to-top">
+</div>
+<div class="header base col-lg-12 row">
+    <div class="header-menu col-lg-8 col-md-12 col-lg-offset-2">
+        <p class="header-menu-logo">
+            <img style="padding-top:32px;" src="logo_v1.svg" alt="Mofee聚合支付">
+        </p>
+        <div class="header-menu-links">
+            <div class="menu-product">
+                <span class="h5">产品<div class="triangle"></div>
+                </span>
+                <p class="header-menu-borderP">
+                </p>
+                <div class="menu-product-content menu-hidd">
+                    <div style="height: 200px;width: 200px;" class="menu-product-list menu-list">
+                        <dl class="">
+                            <dt><a ui-sref="phonePay" href="/phonePay">手机网页支付</a></dt>
+                            <dt><a ui-sref="pcPay" href="/pcPay">PC网页支付</a></dt>
+                            <dt><a ui-sref="scanPay" href="/scanPay">扫码支付</a></dt>
+                            <dt><a ui-sref="cardPay" href="/cardPay">卡牌支付</a></dt>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-exploit">
+                <span class="h5">开发者中心</span>
+                <p class="header-menu-borderP">
+                </p>
+                <div class="menu-exploit-content menu-hidd">
+                    <div class="menu-exploit-list menu-list">
+                        <dl class="develop-center-menu">
+                            <dt><a ui-sref="apiDocument" href="/support/doc">API文档</a></dt>
+                            <dt><a ui-sref="sdkDownload" href="/support/sdkDownload">SDK下载</a></dt>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-help">
+                <span class="h5">帮助</span>
+                <p class="header-menu-borderP">
+                </p>
+
+            </div>
+            <div class="menu-login-btn h4">
+                <a target="_blank" class="h5" href="/user/regon">注册</a>
+                / <a target="_blank" class="h5" href="/user/login">登录</a>
+                <p class="header-menu-borderP">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  -->
+<div class="firstBack backScroll base">
+</div>
+<!-- <script type="text/javascript" src="js/particle.js"></script>
+<canvas id="c_n21" width="702" height="950" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 1;"></canvas> -->
+
+<div class="navbar navbar-default  navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" style="color:#000" onclick="jump(this)" href="javascript:void(0)" data="/">
+                <img src="__IMG__/logo.png" alt="">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        产品 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a  href="/phonePay">手机网页支付</a></li>
+                        <li><a  href="/pcPay">PC网页支付</a></li>
+                        <li><a  href="/scanPay">扫码支付</a></li>
+                        <li><a  href="/cardPay">卡牌支付</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        开发者中心 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/support/doc">API开发文档</a></li>
+                        <li><a href="/support/sdkDownload">SDK下载</a></li>
+                    </ul>
+                </li>
+                <li><a href="/support/help">帮助</a></li>
+                <li><a target="_blank" class="h5" href="/user/regon">注册</a></li>
+                <li><a target="_blank" class="h5" href="/user/index">登录</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+
+{include file="common/index-head" /}
+
+<div class="banner">
+    <div class="banner-wrap">
+        <div class="banner-wrap-inner">
+            <!-- 未登录 [[ -->
+            <form class="login-form hide" method="post" role="form" id="sp_login">
+                <h2 class="login-title">商户登录</h2>
+                <div id="err_id" class="form-err"></div>
+                <div id="chrome_err_id" class="login-err hide"><span class="ico-info-s"></span>
+                    当前浏览器为Chrome最新版，部分控件暂不支持。请更换IE浏览器，给你带来的不便深表歉意！</div>
+                <fieldset>
+
+                    <div class="login-form-line clearfix">
+                        <label class="label"><span class="ico-username"><!-- 用户名 --></span></label>
+                        <div class="element">
+                            <div class="">
+                                <label class="label-text-tips" for="account">商户号或操作员账号</label>
+                                <input class="text" type="text" placeholder="" name="account" id="account" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="login-form-line clearfix">
+                        <label class="label"><span class="ico-password"><!-- 密码 --></span></label>
+                        <div class="element">
+                            <div class=""><!-- 需要下载控件加class "show-download" -->
+                                <label class="label-text-tips" for="password">登录密码</label>
+                                <input class="text" type="password" placeholder="" name="password" id="password" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-btn-line">
+                        <a id="js_submit" class="mod-btn ext-btn-blue js-btn-loading" href="javascript:login();">登录</a>
+                    </div>
+
+                    <div class="link">
+                        没有商户号？ <a href="/regon?action=access">立即接入</a><span class="v-line">|</span> <a href="javascript:;" data-handler="resetPassEvent">忘记密码</a>
+                    </div>
+
+                </fieldset>
+            </form>
+            <!-- 未登录 ]] -->
+
+            <!-- 已登录 [[ -->
+            <form class="login-form logined hide" method="post" action="#" id="pu_login">
+                <h1 class="login-name" id="login_name"></h1>
+                <div class="login-desc">您正在使用的商户平台登录账号为：</div>
+                <div class="login-desc clearfix"><span class="login_uin" id="login_uin"></span>
+                    <a class="change" href="/user/logout?action=out" data-handler="logoutEvent">更换账号</a></div>
+                <div class="form-btn-line">
+                    <a class="mod-btn ext-btn-blue js-loading-btn" href="/user?isLogin" data-handler="autoLoginEvent">进入我的账户</a>
+                </div>
+            </form>
+            <!-- 已登录 ]] -->
+
+            <script type="text/javascript">
+                (function(){
+
+                        //获取当前登录时间
+                        function time(){
+                            var e="",c=new Date(),d=parseInt(c.getHours(),10);
+                            if(d>=0&&d<8){
+                                e="早上"
+                            }else{
+                                if(d>=8&&d<12){
+                                    e="上午"
+                                }else{
+                                    if(d>=12&&d<18){
+                                        e="下午"
+                                    }else{
+                                        if(d>=18&&d<24){
+                                            e="晚上"
+                                        }
+                                    }
+                                }
+                            }
+                            return e
+                        }
+
+                        //判断登录
+                        function a(c,d){
+                            c.className=c.className.replace(new RegExp("(?:^|\\s)"+d+"(?!\\S)","g"),"")
+                        }
+                        var G_uid = "<?php echo $uid ;?>";
+                        if(G_uid && G_uid !== ''){
+                            a(
+                                document.getElementById("pu_login"),"hide");
+                                document.getElementById("login_uin").innerHTML= G_uid ||"";
+                                document.getElementById("login_name").innerHTML=time()+"好！"
+                        }else{
+                            a(
+                                document.getElementById("sp_login"),"hide")
+                        }
+                    }
+                )();</script>
+        </div>
+    </div>
+</div>
+<div class="g-container">
+    <!-- 集成支付方式 [[ -->
+    <div class="section section-pay">
+        <div class="section-wrap">
+            <h2 class="title">集成支付方式</h2>
+            <div class="title-border"></div>
+            <div class="items">
+                <ul class="clearfix">
+                    <li class="item">
+                        <img style="margin-top: 20px; width: 90px;height: 90px;" src="__IMG__/alipay.png" />
+                        <h3 class="item-title">支付宝支付</h3>
+                        <p class="item-desc item-desc-0">支持支付宝扫码支付以及支付宝手机端支付。</p>
+                    </li>
+                    <li class="item">
+                        <img style="margin-top: 20px; width: 90px;height: 90px;" src="__IMG__/wxpay.png" />
+                        <h3 class="item-title">微信支付</h3>
+                        <p class="item-desc item-desc-0">用户打开微信“扫一扫”，扫描商户的二维码后完成支付。</p>
+                    </li>
+                    <li class="item">
+                        <img style="margin-top: 20px; width: 90px;height: 90px;" src="__IMG__/qqpay.png" />
+                        <h3 class="item-title">QQ钱包支付</h3>
+                        <p class="item-desc item-desc-0">用户打开机QQ“扫一扫”手，可唤起QQ钱包完成支付。</p>
+                    </li>
+                    <li class="item">
+                        <img style="margin-top: 20px; width: 90px;height: 90px;" src="__IMG__/other.png" />
+                        <h3 class="item-title">银联支付</h3>
+                        <p class="item-desc item-desc-0">开发中......</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-line">
+                <a class="btn" href="/regon?action=access">立即接入 &gt;</a>
+            </div>
+        </div>
+    </div>
+    <!-- 集成支付方式 ]] -->
+</div>
+{include file="common/login-script" /}
+{include file="common/index-foot" /}
+

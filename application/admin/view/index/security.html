@@ -1,0 +1,812 @@
+{include file="common/head" /}
+<!-- Page -->
+<div class="page">
+    <div class="page-content">
+        <div class="col-lg-3 col-xs-12 " style="padding-left:0;">
+            <!-- Page Widget -->
+            <div class="card card-shadow text-xs-center card-block-domain">
+                <div>
+                    <a class="avatar avatar-lg" href="javascript:void(0)">
+                        <img src="//q4.qlogo.cn/headimg_dl?dst_uin={$userInfo.mch_qq}&spec=100" alt="...">
+                    </a>
+                    <h4 class="profile-user securitycenter">Hi,许祖兴</h4>
+
+                    <!-- Example Api Methods -->
+                    <div class="example">
+                        <div class="pie-progress pie-progress-sm" data-plugin="pieProgress" data-barcolor="#f4b066"
+                             data-goal="50%" aria-valuenow="50%" data-size="100" data-barsize="4"
+                             role="progressbar">
+                            <div class="pie-progress-content">
+                                <div class="pie-progress-number">50%</div>
+                                <div class="pie-progress-label">安全级别</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-stats">
+                        <a class="user-stat counter">
+                            <span class="counter-number font-size-12">绑定手机</span>
+                            <span class="counter-label counter-phone inline-block m-l-5">18******545</span>
+                        </a>
+                        <a class="user-stat counter p-15">
+                            <span class="counter-number font-size-12">验证邮箱</span>
+                            <span class="counter-label inline-block m-l-5">
+                                            10***4@qq.com
+                                    </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-9 col-xs-12 " style="padding-right:0;">
+            <div class="panel security">
+                <div class="panel-heading ">
+                    <h3 class="panel-title">安全设置</h3>
+                </div>
+                <div class="panel-body security">
+                    <table class="table">
+                        <tbody>
+                        <!-- 修改密码开始 -->
+                        <tr>
+                            <td class="work-status">
+                                <i class="icon ml-check_circle green-600" aria-hidden="true"></i>
+                            </td>
+                            <td class="subject">
+                                <div class="table-content">
+                                    <p class="blue-grey-500">修改密码</p>
+                                    <span class="blue-grey-400">请设置一个包含字母/符号/数字中至少2项的高强度密码，并建议定期更换 </span>
+                                </div>
+                            </td>
+                            <td >
+                                <button class="btn btn-outline btn-success finish font-size-12 editpwd">修改</button>
+                            </td>
+                        </tr>
+                        <!-- 修改密码结束 -->
+                        <!-- 邮箱绑定开始 -->
+                        <tr>
+                            <td class="work-status">
+                                <i class="icon ml-check_circle green-600" aria-hidden="true"></i>
+                            </td>
+                            <td class="subject">
+                                <div class="table-content">
+                                    <p class="blue-grey-500">
+                                        邮箱验证</p>
+                                    <span class="blue-grey-400"> 您的邮箱  ：<b>10***4@qq.com</b>。邮箱绑定后可找回密码、接受重要提醒信息。</span>
+                                </div>
+                            </td>
+                            <td >
+                                <a href="javascript:;"><button class="btn btn-outline btn-success finish font-size-12">已验证</button></a>
+                            </td>
+                        </tr>
+                        <!-- 邮箱绑定结束 -->
+                        <!-- 手机验证开始 -->
+
+                        <tr>
+                            <td class="work-status">
+                                <i class="icon ml-check_circle green-600" aria-hidden="true"></i>
+                            </td>
+                            <td class="subject">
+                                <div class="table-content">
+                                    <p class="blue-grey-500">
+                                        手机验证</p>
+                                    <span class="blue-grey-400"> 您手机号码为：18******545,绑定后可用于找回密码、接收动态验证码与重要提醒信息。</span>
+
+                                </div>
+                            </td>
+                            <td >
+                                <button class="btn btn-outline btn-success finish font-size-12 changephone ">修改</button>
+                            </td>
+                        </tr>
+                        <!-- 手机验证结束 -->
+                        <!-- 实名验证开始 -->
+                        <tr>
+                            <td class="work-status">
+                                <i class="icon ml-check_circle green-600" aria-hidden="true"></i>
+                            </td>
+                            <td class="subject">
+                                <div class="table-content">
+                                    <p class="blue-grey-500">实名认证</p>
+                                    <span class="blue-grey-400">已经实名认证</span>
+                                </div>
+                            </td>
+                            <td >
+                                <a href="/verified.php"><button class="btn btn-outline btn-success finish font-size-12">修改</button></a>
+                            </td>
+                        </tr>
+                        <!-- 实名验证结束 -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改密码 -->
+<div class="modal fade form-horizontal using-password-strength" role="form" id="changepwd" aria-hidden="true" aria-labelledby="addTopicForm" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" action="clientarea.php?action=changepw" class="modal-content changepwdform">
+            <input type="hidden" name="token" value="3ff9b0e9d81d483b07baee5261f4d1de87661637" />
+            <input type="hidden" name="submit" value="true" />
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title"><span class="fa fa-lock"></span> 修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-warning"></p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label for="">旧密码</label>
+                            <input type="password" class="form-control" name="existingpw" id="inputExistingPassword" autocomplete="off" />
+                            <span class="form-control-feedback glyphicon"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label for="">新密码</label>
+                            <input type="password" class="form-control" name="newpw" id="inputNewPassword1" autocomplete="off"  />
+                            <span class="form-control-feedback glyphicon"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label for="moduleconfirmpw">确认新密码</label>
+                            <input type="password" class="form-control" name="confirmpw" id="inputNewPassword2" autocomplete="off"  />
+                            <span class="form-control-feedback glyphicon"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br />
+
+                        <div class="progress" id="passwordStrengthBar">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">New Password Rating: 0%</span>
+                            </div>
+                        </div>
+
+
+
+                        <script type="text/javascript">
+
+                            jQuery("#inputNewPassword1").keyup(function() {
+                                var $newPassword1 = jQuery("#newPassword1");
+                                var pw = jQuery("#inputNewPassword1").val();
+                                var pwlength=(pw.length);
+                                if(pwlength>5)pwlength=5;
+                                else if(pwlength>4)pwlength=4.5;
+                                else if(pwlength>2)pwlength=3.5;
+                                else if(pwlength>0)pwlength=2.5;
+                                var numnumeric=pw.replace(/[0-9]/g,"");
+                                var numeric=(pw.length-numnumeric.length);
+                                if(numeric>3)numeric=3;
+                                var symbols=pw.replace(/\W/g,"");
+                                var numsymbols=(pw.length-symbols.length);
+                                if(numsymbols>3)numsymbols=3;
+                                var numupper=pw.replace(/[A-Z]/g,"");
+                                var upper=(pw.length-numupper.length);
+                                if(upper>3)upper=3;
+                                var pwstrength=((pwlength*10)-20)+(numeric*10)+(numsymbols*15)+(upper*10);
+                                if (pwstrength < 0) pwstrength = 0;
+                                if (pwstrength > 100) pwstrength = 100;
+
+                                $newPassword1.removeClass('has-error has-warning has-success');
+                                jQuery("#inputNewPassword1").next('.form-control-feedback').removeClass('glyphicon-remove glyphicon-warning-sign glyphicon-ok');
+                                jQuery("#passwordStrengthBar .progress-bar").removeClass("progress-bar-danger progress-bar-warning progress-bar-success").css("width", pwstrength + "%").attr('aria-valuenow', pwstrength);
+                                jQuery("#passwordStrengthBar .progress-bar .sr-only").html('New Password Rating: ' + pwstrength + '%');
+                                if (pwstrength < 30) {
+                                    $newPassword1.addClass('has-error');
+                                    jQuery("#inputNewPassword1").next('.form-control-feedback').addClass('glyphicon-remove');
+                                    jQuery("#passwordStrengthBar .progress-bar").addClass("progress-bar-danger");
+                                } else if (pwstrength < 75) {
+                                    $newPassword1.addClass('has-warning');
+                                    jQuery("#inputNewPassword1").next('.form-control-feedback').addClass('glyphicon-warning-sign');
+                                    jQuery("#passwordStrengthBar .progress-bar").addClass("progress-bar-warning");
+                                } else {
+                                    $newPassword1.addClass('has-success');
+                                    jQuery("#inputNewPassword1").next('.form-control-feedback').addClass('glyphicon-ok');
+                                    jQuery("#passwordStrengthBar .progress-bar").addClass("progress-bar-success");
+                                }
+                                validatePassword2();
+                            });
+
+                            function validatePassword2() {
+                                var password1 = jQuery("#inputNewPassword1").val();
+                                var password2 = jQuery("#inputNewPassword2").val();
+                                var $newPassword2 = jQuery("#newPassword2");
+
+                                if (password2 && password1 !== password2) {
+                                    $newPassword2.removeClass('has-success')
+                                        .addClass('has-error');
+                                    jQuery("#inputNewPassword2").next('.form-control-feedback').removeClass('glyphicon-ok').addClass('glyphicon-remove');
+                                    jQuery("#inputNewPassword2Msg").html('<p class="help-block">密码不匹配</p>');
+                                    jQuery('input[type="submit"]').attr('disabled', 'disabled');    } else {
+                                    if (password2) {
+                                        $newPassword2.removeClass('has-error')
+                                            .addClass('has-success');
+                                        jQuery("#inputNewPassword2").next('.form-control-feedback').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+                                        jQuery('.form-group input[type="submit"]').removeAttr('disabled');        } else {
+                                        $newPassword2.removeClass('has-error has-success');
+                                        jQuery("#inputNewPassword2").next('.form-control-feedback').removeClass('glyphicon-remove glyphicon-ok');
+                                    }
+                                    jQuery("#inputNewPassword2Msg").html('');
+                                }
+                            }
+
+                            jQuery(document).ready(function(){
+                                jQuery('.using-password-strength input[type="submit"]').attr('disabled', 'disabled');    jQuery("#inputNewPassword2").keyup(function() {
+                                    validatePassword2();
+                                });
+                            });
+
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-success change">修改密码</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </form>
+
+        <script type="text/javascript">
+            $(function() {
+                // Password Strength
+                function getPasswordStrength(pw){
+                    var pwlength=(pw.length);
+                    if(pwlength>5)pwlength=5;
+                    var numnumeric=pw.replace(/[0-9]/g,"");
+                    var numeric=(pw.length-numnumeric.length);
+                    if(numeric>3)numeric=3;
+                    var symbols=pw.replace(/\W/g,"");
+                    var numsymbols=(pw.length-symbols.length);
+                    if(numsymbols>3)numsymbols=3;
+                    var numupper=pw.replace(/[A-Z]/g,"");
+                    var upper=(pw.length-numupper.length);
+                    if(upper>3)upper=3;
+                    var pwstrength=((pwlength*10)-20)+(numeric*10)+(numsymbols*15)+(upper*10);
+                    if(pwstrength<0){pwstrength=0}
+                    if(pwstrength>100){pwstrength=100}
+                    return pwstrength;
+                }
+                $('#inputNewPassword1').blur(function() {
+                    if($(this).val().length == 0) {
+                        $(this).attr("placeholder","请输入新的密码");
+                        return;
+                    }
+                });
+
+                $('#inputNewPassword1').keyup(function() {
+
+                    $(this).parent().removeClass('has-warning has-error has-success');
+                    $(this).next().removeClass('glyphicon-thumbs-down glyphicon-thumbs-up');
+                    if($(this).val().length == 0) {
+                        return;
+                    }
+                    var pwstrength = getPasswordStrength($(this).val());
+                    if(pwstrength > 75) {
+                        $(this).parent().addClass("has-success");
+                        $(this).next().addClass('glyphicon-thumbs-up');
+                    } else if (pwstrength > 30) {
+                        $(this).parent().addClass("has-warning");
+                        $(this).next().addClass('glyphicon-thumbs-down');
+                    } else {
+                        $(this).parent().addClass("has-error");
+                        $(this).next().addClass('glyphicon-thumbs-down');
+                    }
+
+                });
+                // Compare passwords
+                $('#inputNewPassword2').keyup(function() {
+                    $(this).parent().removeClass('has-warning has-error has-success');
+                    $(this).next().removeClass('glyphicon-thumbs-down glyphicon-thumbs-up');
+                    if($(this).val().length == 0) {
+                        return;
+                    }
+                    if($('#inputNewPassword1').val()!= $(this).val()) {
+                        $(this).parent().addClass("has-warning");
+                        $(this).next().addClass('glyphicon-thumbs-down');
+                        $("button[type='submit']").attr("disabled","disabled");
+                    } else {
+                        $(this).parent().addClass("has-success");
+                        $(this).next().addClass('glyphicon-thumbs-up');
+                        $("button[type='submit']").removeAttr("disabled");
+                    }
+                });
+            });
+        </script>
+
+    </div>
+</div>
+<!-- 验证邮箱 -->
+<div class="modal fade" role="form" id="bindemail" aria-hidden="true" aria-labelledby="addTopicForm" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" action="" class="modal-content email-form">
+            <input type="hidden" name="token" value="3ff9b0e9d81d483b07baee5261f4d1de87661637" />
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title"><span class="fa fa-lock"></span> 绑定邮箱</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-warning"></p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <div class="alert alert-alt alert-success alert-dismissible m-t-0" role="alert">
+                                <span class="font-size-14"><b style="color:#46be8a">注意：</b>请务必正确填写邮箱地址，一旦绑定成功，将无法变更！</span>
+                            </div>
+                            <label class="form-control-label" for="inputUserName">邮箱地址</label>
+                            <input type="hidden" class="form-control" name="action" value="resendVerificationEmail" required="required" >
+                            <input type="text" class="form-control" name="email" value="1078509454@qq.com" required="required" id="inputEmail" >
+                            <label class="form-control-label m-t-10" for="inputUserName">确认邮箱地址</label>
+                            <input  class="form-control" name="reemail" value="1078509454@qq.com" required="required" id="reemail" >
+                            <!--<input type="text" class="form-control" disabled="disabled" name="email" value="1078509454@qq.com" required="required" id="inputEmail" >-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-primary emailVerificationPending">发送验证邮件</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- 绑定手机 -->
+<div class="modal fade" role="form" id="bindmobile" aria-hidden="true" aria-labelledby="addTopicForm" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" class="modal-content bindmobileform">
+            <input type="hidden" name="token" value="3ff9b0e9d81d483b07baee5261f4d1de87661637" />
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title"><span class="fa fa-lock"></span> 绑定手机</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-warning"></p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label class="form-control-label" for="inputUserName">手机号码</label>
+                            <input type="text" class="form-control" name="mobile" id="mobile1" value="18877490545">
+                            <p class="col-sm-12 pw-yzm">
+                            <div class="alert alert-alt alert-success alert-dismissible m-t-10 p-10" role="alert">
+                                <a href="javascript:;" id="getMobile1" >获取验证码</a>
+                                <span class="output1"></span><i id="dtime1" style="color:#46be8a"></i><span class="output1p"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group has-feedback">
+                        <label class="form-control-label" for="inputUserName">输入验证码</label>
+                        <input type="text" class="form-control" name="yzm">
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button"  class="btn btn-success bindmobile">绑定手机</button>
+        <button type="reset" class="btn btn-default" data-dismiss="modal">取消</button>
+    </div>
+    </form>
+</div>
+</div>
+<div class="modal fade" role="form" id="changemobile" aria-hidden="true" aria-labelledby="addTopicForm" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" class="modal-content changemobileform">
+            <input type="hidden" name="token" value="3ff9b0e9d81d483b07baee5261f4d1de87661637" />
+            <input type="hidden" id="mobile" value="ok">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title"><span class="fa fa-lock"></span> 验证手机</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-warning"></p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label class="form-control-label" for="inputUserName">手机号码</label>
+                            <input type="text" class="form-control" name="mobile" id="mobile2" disabled="diasbled" value="18877490545">
+                            <p class="col-sm-12 pw-yzm">
+                            <div class="alert alert-alt alert-success alert-dismissible m-t-10 p-10" role="alert">
+                                <a href="javascript:;" id="getMobile2" >手机获取验证码</a>
+                                <span class="output2"></span><i id="dtime2" style="color:#46be8a"></i><span class="output2p"></span></p>
+                        </div>
+                        <div class="alert alert-alt alert-success alert-dismissible m-t-10 p-10" role="alert">
+                            <a href="javascript:;" id="getEmail1" >邮箱获取验证码</a>
+                            <span class="output3"></span><i id="dtime3" style="color:#46be8a"></i><span class="output3p"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group has-feedback">
+                        <label class="form-control-label" for="inputUserName">输入验证码</label>
+                        <input type="text" class="form-control" name="yzm">
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button"  class="btn btn-primary changemobile">修改手机绑定</button>
+        <button type="reset" class="btn btn-default" data-dismiss="modal">取消</button>
+    </div>
+    </form>
+</div>
+</div>
+<div class="modal fade" role="form" id="mobileok" aria-hidden="true" aria-labelledby="addTopicForm" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" class="modal-content bindwechatform">
+            <input type="hidden" name="token" value="3ff9b0e9d81d483b07baee5261f4d1de87661637" />
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title"><span class="fa fa-lock"></span> 绑定成功</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-alt alert-success alert-dismissible m-t-0" role="alert">
+                    感谢您的验证，手机已绑定
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" role="form" id="bindwechat" aria-hidden="true" aria-labelledby="addTopicForm" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" class="modal-content bindwechatform">
+            <input type="hidden" name="token" value="3ff9b0e9d81d483b07baee5261f4d1de87661637" />
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title"><span class="fa fa-lock"></span> 绑定微信</h4>
+            </div>
+            <div class="modal-body">
+                <span class="font-size-14">绑定微信成功后，以后登录可以直接扫码登录，更加安全快捷，并且可以通过微信公众号管理所有产品！</span>
+                <div class="row">
+                    <div class="text-xs-center m-y-20 p-t-20">
+                        <h4 class="m-t-20"><i class="icon wb-warning orange-600" aria-hidden="true"></i>该功能正在开发中</h4>
+                        <p>快用微信扫描二维码完成绑定吧！</p>
+                    </div>
+                    <p class="weixin-img"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function delHtmlTag(str){
+        return str.replace(/<[^>]+>/g,"");//去掉所有的html标记
+    }
+
+    $(function(){
+        setInterval(function(){
+            if($("#mobileok").hasClass("in")){
+                $("#mobileok").modal("hide");
+            }
+        },3000);
+        $(".has-sub").click(function(){
+            $(".has-sub").removeClass("open");
+            $(this).addClass("site-menu-item has-sub open");
+        });
+        <!-- 修改密码 -->
+        $(".change").attr("disabled","disabled");
+        $(".editpwd").click(function(){
+            $("#changepwd").modal();
+        });
+        $("#inputNewPassword2").keyup(function(){
+            var newpw = $("#inputNewPassword1").val();
+            var renew = $(this).val();
+            if(newpw==renew) {
+                $(".change").removeAttr("disabled");
+                $("#changepwd").find("p").text("");
+            }else{
+                $("#changepwd").find("p").text("两次密码输入不一致");
+                $(".change").attr("disabled","disabled");
+            }
+        });
+        $(".change").click(function(){
+            $(this).attr("disabled","disabled");
+            $(this).text("修改中..");
+            var that = $(this);
+            $.ajax({
+                type: 'POST',
+                url: "/clientarea.php?action=changepw",
+                data: $(".changepwdform").serialize(),
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    if (data.result == "n") {
+                        $("#changepwd").find("p").text(delHtmlTag(data.msg));
+                        that.removeAttr("disabled");
+                        that.text("修改密码");
+                    }
+                },
+                error: function (xhr) {
+                    if (xhr.status == "200") { // 兼容调试时301/302重定向导致触发error的问题
+                        alert("修改成功，请刷新页面重新登录");
+                        that.removeAttr("disabled");
+                        that.text("修改密码");
+                        $("#changepwd").modal('hide');
+                    }
+                }
+            })
+        });
+        $(".bindemail").click(function(){
+            $("#bindemail").modal();
+            $(".emailVerificationPending").removeData("send");
+            $(".emailVerificationPending").removeClass("disabled");
+        });
+        $(".emailVerificationPending").click(function(){
+            /* START */
+            if($(this).hasClass("disabled")) return false;
+            if($(this).data("send")) return false;
+            var inputemail=$("#inputEmail").val();
+            var reemail=$("#reemail").val();
+            $(".email-form").submit(function(){return false;});
+            $(this).data("send",true);
+            if(!/^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/.test(inputemail)){
+                alert("邮箱格式不正确");
+                return false;
+            }else if(inputemail==''){
+                alert("请输入邮箱");
+                return false;
+            }else if(inputemail!==reemail){
+                alert("两次邮箱输入不一致");
+                return false;
+            }else{
+                $.post("securitycenter.php", { "inputemail": inputemail,"reemail": reemail,"checkemail": "checkemail"},function(data){
+                    if(data.status=='n'){
+                        alert(data.msg);
+                        return false;
+                    }else{
+                        $(".emailVerificationPending").addClass("disabled");
+                        $(".emailVerificationPending").text("邮件已发送");
+                        //$("#bindemail").modal('hide');
+                    }
+                },'json');
+            }
+        });
+
+        /* END */
+
+        function countDown1(){
+            var wait = document.getElementById('dtime1');
+            var interval = setInterval(function(){
+                var time = --wait.innerHTML;
+                if(time <= 0) {
+                    clearInterval(interval);
+                    $("#getMobile1").data("g",'false');
+                    $("#dtime1").text("");
+                    $("#getMobile1").show();
+                    $(".output1").hide();
+                    $(".output1p").hide();
+                }
+            }, 1000);
+        }
+        function countDown2(){
+            var wait = document.getElementById('dtime2');
+            var interval = setInterval(function(){
+                var time = --wait.innerHTML;
+                if(time <= 0) {
+                    clearInterval(interval);
+                    $("#getMobile2").data("g",'false');
+                    $("#dtime2").text("");
+                    $("#getMobile2").show();
+                    $(".output2").hide();
+                    $(".output2p").hide();
+                }
+            }, 1000);
+        }
+        function countDown3(){
+            var wait = document.getElementById('dtime3');
+            var interval = setInterval(function(){
+                var time = --wait.innerHTML;
+                if(time <= 0) {
+                    clearInterval(interval);
+                    $("#getEmail1").data("g",'false');
+                    $("#dtime3").text("");
+                    $("#getEmail1").show();
+                    $(".output3").hide();
+                    $(".output3p").hide();
+                }
+            }, 1000);
+        }
+        if($("#dtime1").text()){
+            countDown1();
+        }
+        if($("#dtime2").text()){
+            countDown2();
+        }
+        if($("#dtime3").text()){
+            countDown3();
+        }
+        //绑定
+        $(document).on("click",".bindphone",function(){
+//              $.get("",{"see":true});
+            $("#bindmobile").modal();
+            /*for(var each in interval){
+                clearInterval(interval[each]);
+            }
+            $("#getMobile2").data("g",'false');
+            $("#dtime2").text("");
+            $("#getMobile1").data("g",'false');
+            $("#dtime1").text("");*/
+        });
+        $(document).on("click",".changestepthree",function(){
+            $("#bindmobile").modal();
+        });
+        $(document).on("click","#getMobile1",function(){
+            var mobile=$("input#mobile1").val();
+            if(!mobile){
+                alert("手机号不能为空");
+                return ;
+            }
+            var mobileReg = !!mobile.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/);
+            mobileReg=true;
+            if(mobileReg===false){
+                alert("手机号格式错误");
+                return ;
+            }
+            if($(this).data("g")=='true'){
+                return ;
+            }
+            $(this).data("g",'true');
+            $(this).text("正在提交数据...");
+            $.getJSON(window.location.href,{"mobile":mobile},function(data){
+                if(data.type=="y"){
+                    $("#dtime1").html(data.msg);
+                    countDown1();
+                    $("#getMobile1").html("获取验证码");
+                    $(".output1").show();
+                    $(".output1p").show();
+                    $(".output1").text("验证码已发送，请检查手机，或等待 ");
+                    $(".output1p").text(" 秒后重新发送");
+                    $("#getMobile1").hide();
+                }else if(data.type=="error"){
+                    $("#getMobile1").text("获取验证码");
+                }else {
+                    $("#getMobile1").data("g",'false');
+                    $("#getMobile1").text("获取验证码");
+                    alert(data.msg);
+                }
+            });
+        });
+        $(document).on("click","#getEmail1",function(){
+            if($(this).data("g")=='true'){
+                return ;
+            }
+            $(this).data("g",'true');
+            $(this).text("正在提交数据...");
+            $.getJSON(window.location.href,{"email":"ok"},function(data){
+                if(data.type=="y"){
+                    $("#dtime3").html(data.msg);
+                    countDown3();
+                    $("#getEmail1").html("邮箱获取验证码");
+                    $(".output3").show();
+                    $(".output3p").show();
+                    $(".output3").text("验证码已发送，请检查邮箱，或等待 ");
+                    $(".output3p").text(" 秒后重新发送");
+                    $("#getEmail1").hide();
+                }
+            });
+        });
+        $(document).on("click",".bindmobile",function(){
+            var yzm = $("#bindmobile input[name='yzm']").val();
+            if(!yzm){
+                alert("验证码不能为空");
+                return ;
+            }
+            $.post("/securitycenter.php?bind=mobile&bindbind=1",$(".bindmobileform").serialize(),function(data){
+                if(data.result=="n"){
+                    alert(data.msg);
+                }
+                if(data.result=="y"){
+                    var mobile = $("#mobile1").val();
+                    var html = '<td class="work-status"><i class="icon ml-check_circle green-600" aria-hidden="true"></i></td><td class="subject"> <div class="table-content"> <p class="blue-grey-500">';
+                    html+='<span class="tag tag-sm orange-600"> <i class="icon ml-cancel_circle" aria-hidden="true"></i></span>手机验证</p> <span class="blue-grey-400"> 您手机号码为：'+data.mobile+',绑定后可用于找回密码、接收动态验证码与重要提醒信息。</span> </div> </td>';
+                    html+='<td> <button class="btn btn-outline btn-success  finish font-size-12 changephone">修改</button> </td>';
+                    $(".table tr:eq(2)").html(html);
+                    $(".counter-phone").text(data.mobile);
+                    $("#bindmobile").modal('hide');
+                    $(".changemobileform input[name='yzm']").val("");
+                    $("#mobile2").val(mobile);
+                    $("#mobileok").modal();
+                }
+            },"json");
+        });
+
+        //绑定后修改验证
+        $(document).on("click",".changephone",function(){
+//              $.get("",{"see":true});
+            $("#changemobile").modal();
+            /*for(var each in interval){
+                clearInterval(interval[each]);
+            }
+            $("#getMobile2").data("g",'false');
+            $("#dtime2").text("");
+            $("#getMobile1").data("g",'false');
+            $("#dtime1").text("");*/
+        });
+        $(document).on("click","#getMobile2",function(){
+            var mobile=$("input#mobile2").val();
+            if(!mobile){
+                alert("手机号不能为空");
+                return ;
+            }
+            var mobileReg = !!mobile.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/);
+            mobileReg=true;
+            if(mobileReg===false){
+                alert("手机号格式错误");
+                return ;
+            }
+            if($(this).data("g")=='true'){
+                return ;
+            }
+            $(this).data("g",'true');
+            $(this).text("正在提交数据...");
+            $.getJSON(window.location.href,{"mobile":"ok"},function(data){
+                if(data.type=="y"){
+                    $("#dtime2").html(data.msg);
+                    countDown2();
+                    $("#getMobile2").html("手机获取验证码");
+                    $(".output2").show();
+                    $(".output2p").show();
+                    $(".output2").text("验证码已发送，请检查手机，或等待 ");
+                    $(".output2p").text(" 秒后重新发送");
+                    $("#getMobile2").hide();
+                }else if(data.type=="error"){
+                    $("#getMobile2").text("手机获取验证码");
+                }else{
+                    $("#getMobile2").data("g",'false');
+                    $("#getMobile2").text("手机获取验证码");
+                    alert(data.msg);
+                }
+            });
+        });
+        $(document).on("click",".changemobile",function(){
+            $(".bindmobileform input").val("");
+            var yzm = $("#changemobile input[name='yzm']").val();
+            if(!yzm){
+                alert("验证码不能为空");
+                return ;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "/securitycenter.php?bind=mobile&bindbind=1",
+                data: $(".changemobileform").serialize(),
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    if (data.result == "n") {
+                        alert(data.msg);
+                    }
+                    if(data.result == 'y'){
+                        $("#changemobile").modal("hide");
+                        $("#bindmobile").modal();
+                        $(".table tr:eq(2) td:eq(2) button").removeClass("changephone");
+                        $(".table tr:eq(2) td:eq(2) button").addClass("changestepthree");
+                    }
+                }
+            })
+        });
+
+
+        $(".bindwechat").click(function(){
+            $("#bindwechat").modal();
+        });
+
+
+    })
+</script>
+
+{include file="common/foot" /}
+
+

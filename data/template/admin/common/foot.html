@@ -1,0 +1,146 @@
+
+<!-- Footer -->
+
+
+<script src="/static/ziliao/js/babel-external-helpers.js"></script>
+
+<script src="/static/ziliao/js/tether.js"></script>
+<script src="/static/ziliao/js/bootstrap.js"></script>
+<script src="/static/ziliao/js/animsition.js"></script>
+<script src="/static/ziliao/js/jquery.mousewheel.js"></script>
+<script src="/static/ziliao/js/jquery-asscrollbar.js"></script>
+<script src="/static/ziliao/js/jquery-asscrollable.js"></script>
+<script src="/static/ziliao/js/jquery-ashoverscroll.js"></script>
+<script src="/static/ziliao/js/public.js"></script>
+<!-- Plugins -->
+<script src="/static/ziliao/js/to-markdown.js"></script>
+<script src="/static/ziliao/js/marked.js"></script>
+<script src="/static/ziliao/js/markdown.js"></script>
+<script src="/static/ziliao/js/bootstrap-markdown.js"></script>
+<script src="/static/ziliao/js/bootstrap-select-one.js"></script>
+<script src="/static/ziliao/js/switchery.min.js"></script>
+<script src="/static/ziliao/js/intro.js"></script>
+<script src="/static/ziliao/js/screenfull.js"></script>
+<script src="/static/ziliao/js/jquery-slidepanel.js"></script>
+<script src="/static/ziliao/js/chartist.min.js"></script>
+<script src="/static/ziliao/js/chartist-plugin-tooltip.min.js"></script>
+<script src="/static/ziliao/js/jquery-selective.min.js"></script>
+<script src="/static/ziliao/js/jquery-aspieprogress.js"></script>
+<script src="/static/ziliao/js/jquery.placeholder.js"></script>
+<!-- Scripts -->
+<script src="/static/ziliao/js/state.js"></script>
+<script src="/static/ziliao/js/component.js"></script>
+<script src="/static/ziliao/js/plugin.js"></script>
+<script src="/static/ziliao/js/base.js"></script>
+<script src="/static/ziliao/js/config.js"></script>
+<script src="/static/ziliao/js/menubar.js"></script>
+<script src="/static/ziliao/js/gridmenu.js"></script>
+<script src="/static/ziliao/js/sidebar.js"></script>
+<script src="/static/ziliao/js/pageaside.js"></script>
+<script src="/static/ziliao/js/menu.js"></script>
+<script src="/static/ziliao/js/colors.js"></script>
+<script src="/static/ziliao/js/tour.js"></script>
+<script>
+    Config.set('assets', '../assets');
+</script>
+<!-- Page -->
+<script src="/static/ziliao/js/site.js"></script>
+<script src="/static/ziliao/js/asscrollable.js"></script>
+<script src="/static/ziliao/js/slidepanel.js"></script>
+<script src="/static/ziliao/js/switchery.js"></script>
+<script src="/static/ziliao/js/jquery-placeholder.js"></script>
+<script src="/static/ziliao/js/material.js"></script>
+<script src="/static/ziliao/js/aspaginator.js"></script>
+<script src="/static/ziliao/js/baseapp.js"></script>
+<script src="/static/ziliao/js/work.js"></script>
+<script src="/static/ziliao/js/work-one.js"></script>
+<script src="/static/layer/layer.js"></script>
+<!-- Page -->
+{if $Request.action == 'security'}
+<script src="/static/ziliao/js/aspieprogress.js"></script>
+{/if}
+{if $Request.action == 'ticket'}
+<!-- Page -->
+<script src="/static/ziliao/js/bootstrap-select.js"></script>
+<script src="/static/ziliao/js/dropify.min.js"></script>
+{/if}
+<script>
+    (function(document, window, $) {
+        'use strict';
+        var Site = window.Site;
+        $(document).ready(function() {
+            Site.run();
+        });
+    })(document, window, jQuery);
+    $('.clientarea-action-emails').on('click', function(){
+        //iframe层-父子操作
+
+        var area_w=$(window).width()-700;
+        var area_t=$("#site-navbar-collapse").outerHeight(true);
+        var area_h=$(window).height();
+        //console.info(area_t);
+        layer.open({
+            type: 2,
+            area: ['700px', area_h+'px'],
+            fixed: true, //不固定
+            maxmin: false,
+            scrollbar: false,
+            shadeClose: true,
+            offset: ['0px',area_w+'px'],
+            move: false,
+            shade: 0.1,
+            anim: 3,
+            closeBtn: 0,
+            title: false,
+            content: $(this).attr("alter-url"),
+            cancel: function(){
+                //右上角关闭回调
+                layer.closeAll();
+                //return false 开启该代码可禁止点击该按钮关闭
+            }
+        });
+
+
+    });
+
+
+    $(".has-sub").click(function(){
+        if($(this).hasClass("open")) {
+            $(".has-sub").removeClass("open");
+        }else {
+            $(this).addClass("open");
+        }
+    });
+    // Ticket Rating Click Handler
+    jQuery('.ticket-reply .zhiliaoyun_rating .wb-star').click(function(event) {
+        window.location = 'viewticket.php?tid=' + jQuery(this).parent('.zhiliaoyun_rating').attr("ticketid") + '&c=' + jQuery(this).parent('.zhiliaoyun_rating').attr("ticketkey") + '&rating=rate' + jQuery(this).parent('.zhiliaoyun_rating').attr("ticketreplyid") + '_' + jQuery(this).attr("rate");
+    });
+    jQuery(".ticket-reply .zhiliaoyun_rating .wb-star").hover(
+        function(){
+            jQuery(".ticket-reply .zhiliaoyun_rating .wb-star").removeClass("orange-600");
+            var star=$(this).index();
+            for(var x=0;x<=star;x++){
+                jQuery(".ticket-reply .zhiliaoyun_rating .wb-star").eq(x).addClass("orange-600");
+            }
+        },function(){
+            jQuery(".ticket-reply .zhiliaoyun_rating .wb-star").removeClass("orange-600");
+        }
+    );
+    /**
+     * Append additional file upload input field.
+     */
+    function extraTicketAttachment() {
+        jQuery("#fileUploadsContainer").append('<input type="file" name="attachments[]" class="form-control" />');
+    }
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        $("#user-menu li:first").before("<li><a href=\"/index.php?m=clientloginemail&no=email\" class=\"settings\">登录不发邮件</a></li>");
+    });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<div class="sidebar">
+    <ul class="sidebar-ul"><!-- 选中给.sidebar-li加class "sidebar-on" -->
+
+        <li class="sidebar-li  sidebar-on">
+            <a class="sidebar-droped" href="javascript:;">接口介绍 <span class="sidebar-arr"><span class="sidebar-arr-b"></span></span></a>
+            <div class="sidebar-drop"><!-- 选中给.sidebar-drop-a加class "on" -->
+                <a class="sidebar-drop-a" href="#Explain">文档说明</a>
+                <a class="sidebar-drop-a" href="#Apply">如何申请</a>
+            </div>
+        </li>
+
+        <li class="sidebar-li ">
+            <a class="sidebar-droped" href="javascript:;" >接口规则 <span class="sidebar-arr"><span class="sidebar-arr-b"></span></span></a>
+            <div class="sidebar-drop"><!-- 选中给.sidebar-drop-a加class "on" -->
+                <a class="sidebar-drop-a" href="?pid=38&docid=55">&nbsp;&nbsp;&nbsp;协议规则</a>
+                <a class="sidebar-drop-a" href="?pid=38&docid=56">&nbsp;&nbsp;&nbsp;参数规定</a>
+                <a class="sidebar-drop-a" href="?pid=38&docid=57">&nbsp;&nbsp;&nbsp;安全规范</a>
+            </div>
+        </li>
+
+        <li class="sidebar-li ">
+            <a class="sidebar-droped" href="javascript:;" data-id="50">API列表 <span class="sidebar-arr"><span class="sidebar-arr-b"></span></span></a>
+            <div class="sidebar-drop"><!-- 选中给.sidebar-drop-a加class "on" -->
+                <a class="sidebar-drop-a" href="?pid=38&docid=58">&nbsp;&nbsp;&nbsp;统一下单</a>
+                <a class="sidebar-drop-a" href="?pid=38&docid=59">&nbsp;&nbsp;&nbsp;支付结果</a>
+                <a class="sidebar-drop-a" href="?pid=38&docid=60">&nbsp;&nbsp;&nbsp;订单查询</a>
+                <a class="sidebar-drop-a" href="?pid=38&docid=61">&nbsp;&nbsp;&nbsp;关闭订单</a>
+                <a class="sidebar-drop-a" href="?pid=38&docid=62">&nbsp;&nbsp;&nbsp;申请退款</a>
+                <a class="sidebar-drop-a" href="?pid=38&docid=63">&nbsp;&nbsp;&nbsp;退款查询</a>
+                <a class="sidebar-drop-a" href="?pid=38&docid=64">&nbsp;&nbsp;&nbsp;对账单下载</a>
+            </div>
+        </li>
+
+        <li class="sidebar-li ">
+            <a class="sidebar-droped" href="javascript:;" data-id="195">DEMO下载 <span class="sidebar-arr"><span class="sidebar-arr-b"></span></span></a>
+            <div class="sidebar-drop"><!-- 选中给.sidebar-drop-a加class "on" -->
+                <a class="sidebar-drop-a" href="#demo">&nbsp;&nbsp;&nbsp;DEMO下载</a>
+            </div>
+        </li>
+
+    </ul>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('.sidebar-li>a').on('click',function(){
+            if ($(this).next().css('display') == "none") {
+                $('.sidebar-li').children('ul').slideUp(300);
+                $(this).next('ul').slideDown(300);
+                $(this).parent('li').addClass('sidebar-on on').siblings('li').removeClass('sidebar-on');
+            }else{
+                $(this).next('ul').slideUp(300);
+                $('.sidebar-li.sidebar-on .on').removeClass('sidebar-on');
+            }
+        });
+    });
+</script>

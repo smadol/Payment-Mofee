@@ -1,0 +1,83 @@
+{include file="common/user-head" /}
+    <div class="g-content" id="content">
+    <h2 class="mod-title">
+        <span class="title">支付订单查询</span>
+    </h2>
+    <div class="section-main js-content-loading">
+        <!-- 普通使用的查询表单结构 [[ -->
+        <div class="mod-form ext-form-query" id="normal_role">
+            <!--这行别删，修复ie7bug:去掉的话第一行会换行-->
+            <div class="g-row g-high-zindex">
+                <div class="form-line g-col-12">
+                    <div class="g-row">
+                        <label class="form-label g-col-4">支付方式 :</label>
+                        <div class="form-element g-col-8">
+                            <div class="form-element-inner show-text-tips">
+                                <input class="form-text" type="text" id="type_id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-line g-col-12">
+                    <div class="g-row">
+                        <label class="form-label g-col-4">订单号 :</label>
+                        <div class="form-element g-col-8">
+                            <div class="form-element-inner show-text-tips">
+                                <input class="form-text" type="text" id="trans_id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-btn-line g-row">
+                <div class="form-element g-col-3 g-col-offset-3">
+                    <a class="mod-btn ext-btn-blue-s" data-handler="searchEvent">查&nbsp;&nbsp;&nbsp;询</a>
+                </div>
+            </div>
+        </div>
+        <!-- 普通使用的查询表单结构 ]] -->
+
+        <div class="mod-table ext-table-gray js-page-loading show-table-nodata" id="table_content"><!-- 无数据加class "show-table-nodata" -->
+            <table>
+                <caption>退款订单查询</caption>
+                <thead>
+                <tr><th class="col1" scope="col">状态</th>
+                    <th scope="col">支付订单号/商户订单号</th>
+                    <th scope="col">支付商品</th>
+                    <th class="col14" scope="col">订单金额(元)</th>
+                    <th class="col12" scope="col">支付方式</th>
+                    <th class="col12" scope="col">交易时间/完成时间</th>
+                </tr></thead>
+                <tbody id="tbody">
+                {foreach $orderData as $vo }
+                <tr>
+                    <td>
+                        {if $vo.status == 1}
+                        <b>下单完成</b> {elseif $vo.status == 2}<b>支付完成</b> {else /} <b>支付失败</b>
+                        {/if}
+                    </td>
+                    <td>{$vo.pay_id}<br>{$vo.trade_no}</td>
+                    <td>{$vo.subject}</td>
+                    <td>￥ <b>{$vo.amount}</b></td>
+                    <td> {if $vo.method == 'WXPAY'}<b>微信支付</b>{else /}<b>支付宝</b> {/if}</td>
+                    <td>{$vo.create_time}<br>{$vo.update_time}</td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+            {empty name="$orderData"}
+            <div class="table-nodata">
+                <div class="table-nodata-wrap">
+                    <span class="ico-info"></span><span id="table_tips">暂无数据</span>
+                </div>
+            </div>
+            {/empty}
+        </div>
+        <!-- 翻页[[ -->
+        {$orderData->render()}
+        <!-- 翻页]] -->
+    </div>
+</div>
+
+</div>
+{include file="common/index-foot" /}

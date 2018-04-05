@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="keywords" content="Mofee聚合支付，免签聚合支付平台,提供安全快捷的支付方式" />
+    <meta name="description" content="Mofee聚合支付，免签聚合支付平台,提供安全快捷的支付方式" />
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="bookmark" href="/favicon.ico"/>
+    <meta content="" name="pgv">
+
+    <title>商户平台登陆 - 免签聚合支付平台｜提供安全快捷的支付方式</title>
+
+    <link href="__CSS__/global_mod_min.css?t=__VER__" rel="stylesheet" type="text/css" />
+
+    <link href="__CSS__/index_min.css?t=__VER__" rel="stylesheet" type="text/css" />
+
+    <link href="__CSS__/wiki_min.css?t=__VER__" rel="stylesheet" type="text/css" />
+
+    <link href="__CSS__/style.css?t=__VER__" rel="stylesheet" type="text/css" />
+
+    <script src="__JS__/jquery-1.9.1.js?t=__VER__"></script>
+
+</head>
+<body class="index apply all" data-page="index">
+<style >
+    .mod-topbar {
+        color: #878787;
+        height: 30px;
+        line-height: 30px;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #ebebeb;
+        font-size: 12px;
+        position: relative;
+        z-index: 1;
+    }
+    .mod-topbar .layout {
+        height: 100%;
+    }
+    .layout {
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .mod-topbar-links {
+        float: left;
+    }
+    .mod-topbar-right {
+        float: right;
+        height: 30px;
+    }
+    .mod-topbar-links a {
+        padding: 0 10px;
+        line-height: 1;
+        vertical-align: inherit;
+    }
+    .mod-topbar a {
+        color: #878787;
+    }
+    .mod-topbar-right .user {
+        height: 30px;
+        border: 1px solid transparent;
+        border-top: none;
+        position: relative;
+    }
+    .mod-topbar-right .name {
+        color: #323232;
+    }
+    .mod-topbar-item {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 12px;
+        cursor: pointer;
+    }
+</style>
+<div class="g-wrapper">
+    <div class="mod-topbar" id="jmod_topbar">
+        <div class="layout clearfix">
+            <div class="mod-topbar-links">
+                <a href="#" class="mod-topbar-item">欢迎使用Mofee聚合支付商户平台！</a>
+            </div>
+            <div class="mod-topbar-right">
+                {if $userInfo }
+                <a href="/user?action=wellcome" target="_blank" class="mod-topbar-item">管理中心</a>
+                <a href="/user/order?action=details" target="_blank" class="mod-topbar-item">我的订单</a>
+                <div class="user mod-topbar-item" style="">
+                    <p class="name">
+                        <span><a href="/user?action=index" target="_blank">ID:{$uid}</a></span>
+                        <i></i>
+                    </p>
+                </div>
+                {else /}
+                <a href="#" class="mod-topbar-item">欢迎您！<?php echo(time()) ;?></a>
+                {/if}
+            </div>
+        </div>
+    </div>
+    <!-- 头部 -->
+    <div class="g-header">
+        <div class="header-wrap clearfix">
+            <h1 class="header-logo">
+                <a id="header_logo" class="header-logo-a" href="javascript:;">Mofee 聚合支付</a>
+                <span class="ico-beta"></span>
+            </h1>
+            <ul class="header-nav">
+                <li id="header_comp_name_li" class="header-nav-li header-nav-user js-mouse-event" data-class="on">
+                    您好，<span id="header_comp_name"></span>
+                    <a data-handler="logoutEvent" class="header-nav-a" href="javascript:;">退出</a>
+                    <span class="v-line">|</span>
+                </li>
+                <li class="header-nav-li header-nav-apply">
+                    <a href="/regon?action=access" class="header-nav-a">申请接入</a>
+                    <span class="v-line">|</span>
+                </li>
+                <li class="header-nav-li header-nav-develop">
+                    <a href="/support/doc" class="header-nav-a" target="_blank">开发文档</a>
+                    <span class="v-line">|</span>
+                </li>
+                <li class="header-nav-li header-nav-help">
+                    <a href="/support/help" class="header-nav-a" target="_blank">帮助中心</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 头部 //END -->

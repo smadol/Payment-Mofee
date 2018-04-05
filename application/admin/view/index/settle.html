@@ -1,0 +1,81 @@
+{include file="common/head" /}
+
+<link rel="stylesheet" href="/static/ziliao/css/dataTables.bootstrap.css">
+<link rel="stylesheet" href="/static/ziliao/css/dataTables.fixedHeader.css">
+<link rel="stylesheet" href="/static/ziliao/css/dataTables.responsive.css">
+<link rel="stylesheet" href="/static/ziliao/css/datatable.css">
+<!--Page-->
+<div class="page">
+    <div class="page-content">
+        <!-- Panel Basic -->
+        <div class="panel">
+            <header class="panel-heading">
+                <div class="panel-actions"></div>
+                <h3 class="panel-title">我的结算记录({$settleCount})</h3>
+            </header>
+            <div class="panel-body">
+                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_length" id="DataTables_Table_0_length">
+                            </div></div>
+                        <div class="col-sm-6"><div id="DataTables_Table_0_filter" class="dataTables_filter">
+                            </div></div></div>
+                    <div class="row">
+                        <div class="col-sm-12"><table class="table table-hover dataTable table-striped w-full table_hosting_remark no-footer" data-plugin="dataTable" data-order="[[0,&quot;desc&quot;],[2,&quot;desc&quot;]]" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                    <thead>
+                    <tr role="row">
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="descending" aria-label="状态: 升序" style="width: 65px;">状态</th>
+                        <th class="sorting_desc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="产品/域名: 升序" style="width: 194px;">结算单号</th>
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="账单周期: 升序" style="width: 76px;">结算金额</th>
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="IP地址: 升序" style="width: 118px;">结算方式</th>
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="价格: 升序" style="width: 86px;">创建时间/完成时间</th>
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="操作: 升序" style="width: 106px;">操作</th></tr>
+                    </thead>
+                    <tbody>
+                    {foreach $settleData as $vo }
+                    <tr role="row" class="odd">
+                        <td class="work-status sorting_1">
+                            {if $vo.status == 1}
+                            <span class="tag tag-warning">结算申请中</span>
+                            {elseif $vo.status == 2}
+                            <span class="tag tag-success">结算完成</span>
+                            {else /}
+                            <span class="tag tag-danger">支付失败</span>
+                            {/if}
+                        </td>
+                        <td>{$vo.onum}</td>
+                        <td>￥ <b>{$vo.amount}</b></td>
+                        <td> <b>{$vo.payment}</b></td>
+                        <td>{$vo.create_time}<br>{$vo.update_time}</td>
+                        <td><a href="/user/clientarea.php?action=productdetails"><button class="btn btn-outline btn-success ">删除订单</button></a>
+
+                    </tr>
+                    {/foreach}
+                    </tbody>
+
+                </table>
+                </div>
+                </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">共有1 项，正在展示第 1 到 1 项</div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                </div></div></div></div>
+
+            </div>
+
+        </div>
+        <script src="/static/ziliao/js/jquery.dataTables.js"></script>
+        <script src="/static/ziliao/js/dataTables.fixedHeader.js"></script>
+        <script src="/static/ziliao/js/dataTables.bootstrap.js"></script>
+        <script src="/static/ziliao/js/dataTables.responsive.js"></script>
+        <script src="/static/ziliao/js/dataTables.tableTools.js"></script>
+        <script src="/static/ziliao/js/babel-external-helpers.js"></script>
+    </div>
+</div>
+<!--//Page-->
+
+{include file="common/foot" /}

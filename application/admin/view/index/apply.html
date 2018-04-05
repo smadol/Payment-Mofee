@@ -1,0 +1,164 @@
+{include file="common/head"/}
+<div class="page">
+    <div class="page-content ">
+        <div class="row">
+            <div class="col-xxl-8 col-lg-8 col-xs-12 product-invoice  p-t-10  p-l-15">
+                <!-- Panel -->
+                <div class="panel p-b-40 col-lg-12 col-xs-12  h-600">
+                    <div class="panel-body container-fluid p-l-15 p-r-15">
+                        <div class="row ">
+                            <div class="panel-heading">
+                                <h3 class="panel-title details p-l-10 p-t-0">
+                                    账户结算
+                                </h3>
+                            </div>
+                            <form method="post" action="">
+                                <div class="form-group row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="alert alert-success alert-dismissible m-t-20" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>结算账户请在个人资料内填写修改！<a class="alert-link" href="javascript:void(0)">请确保结算账户可用性</a>。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-12 col-md-2 form-control-label addfund-bt">结算金额: </label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input type="text" name="amount" id="amount" value="10.00" class="form-control" required="">
+                                        <div id="errMsg" class="alert alert-danger alert-dismissible m-t-20">
+                                            <span class="fa fa-exclamation-circle" style="color: red"></span>
+                                            <span class="alert-link" id="errMsg_text"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-12 col-md-2 form-control-label addfund-bt">结算方式: </label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input type="hidden" id="paymentmethod" name="paymentmethod" value="">
+                                        <ul>
+                                            <li class="local-item col-sm-3 p-l-0 p-r-0 pay_method m-r-10">
+                                                <a><div class="alipay" value="alipay"></div><p class="hk-bt"></p></a>
+                                            </li>
+                                            <li class="local-item col-sm-3 p-l-0 p-r-0 pay_method m-r-10">
+                                                <a><div class="weixinpay" value="wxpay"></div><p class="hk-bt"></p></a>
+                                            </li>
+
+                                            <script type="text/javascript">
+                                                $(function(){
+                                                    $(".pay_method").click(function(){
+                                                        var payway=$(this).find("div").attr("value");
+                                                        $("input[name='paymentmethod']").attr("value",payway);
+                                                    });
+                                                    $(".pay_method").click(function(){
+                                                        $(this).siblings("li").find("a").css("border-color","#f2f2f2 ");
+                                                        $(this).find("a").css("border-color","#46be8a");
+                                                    });
+                                                });
+                                            </script>
+
+                                        </ul>
+                                    </div>
+                                    <label class="col-xs-12 col-md-2 form-control-label m-t-10"> </label>
+                                    <div class="col-md-9 col-xs-12  m-t-15">
+                                        <button type="button" onclick="settle()" class="btn btn-animate btn-animate-side btn-success">申请结算</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2"></label>
+                                    <div class="col-sm-6">
+                                        <h4><span class="fa fa-exclamation-circle"></span>注意事项</h4>
+                                        当前最低提现金额为<b>10</b>元<br>
+                                        申请提现后，你的款项将在T+1工作日内下发到指定账户内。
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!-- End Panel -->
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-xxl-4 col-lg-4 col-xs-12 p-t-10">
+                <!-- Widget Linepoint -->
+                <div class="card card-shadow card card-shadow card-md col-xxl-12 col-lg-12 col-xs-12 p-l-0  p-r-0 h-350" id="widgetLinepointDate">
+                    <div class="text-xs-center card-block-domain">
+                        <div class="card-block">
+                            <a class="avatar avatar-lg  p-t-0" href="javascript:void(0)">
+                                <img src="//q4.qlogo.cn/headimg_dl?dst_uin={$userInfo.mch_qq}&spec=100" alt="">
+                            <p class=" m-t-20">账户余额:</p><h4>¥<lable>{$wallet.total}</lable> 元</h4>
+                            <div class="user-stats m-t-20">
+                                <a class="user-stat counter">
+                                    <span class="counter-number font-size-14">￥10.00元</span>
+                                    <span class="counter-label inline-block m-l-5">最低结算金额</span>
+                                </a>
+                                <a class="user-stat counter p-15">
+                                    <span class="counter-number font-size-14">￥1000.00元</span>
+                                    <span class="counter-label inline-block m-l-5">最高结算金额</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- End Widget Linepoint -->
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#errMsg").hide();
+        document.onkeydown = function(e)
+        {
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13)
+            {
+                settle();
+            }
+        }
+    });
+
+    //结算
+    function settle() {
+        var payAmount = $("#amount").val();
+        if (payAmount == null || payAmount == ""|| payAmount == 0) {
+            $("#errMsg").show();
+            $("#errMsg_text").html("请输入结算金额");
+            return;
+        }
+        var paymentmethod = $("#paymentmethod").val();
+        if (paymentmethod == null || paymentmethod == "") {
+            $("#errMsg").show();
+            $("#errMsg_text").html("请选择结算方式");
+            return;
+        }
+        var postData = {
+            "amount" : payAmount,
+            "payment" : paymentmethod
+        };
+        $.ajax({
+            type : 'POST',
+            dataType : 'json',
+            url : '/user/apply.html',
+            data : postData,
+            success : function(result) {
+                if (result.code == '1') {
+                    layer.msg('申请结算成功',{icon:1});
+                    setTimeout(function () {
+                        //跳转结算记录
+                        window.location.href = "/user/settle";
+                    }, 1500);
+                } else {
+                    //爆出错误
+                    $("#errMsg").show();
+                    $("#errMsg_text").html(result.msg);
+                }
+            }
+        })
+    }
+
+</script>
+{include file="common/foot"/}
